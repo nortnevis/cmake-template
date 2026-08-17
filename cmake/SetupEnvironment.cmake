@@ -3,6 +3,10 @@ include(CMakePrintHelpers)
 cmake_print_variables(CMAKE_TOOLCHAIN_FILE)
 cmake_print_variables(CMAKE_CXX_COMPILER_LAUNCHER)
 
+set(CMAKE_CXX_SCAN_FOR_MODULES FALSE)
+set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_C_STANDARD 23)
+
 include(FetchContent)
 macro(find_or_fetch_dependency PACKAGE_NAME MIN_VERSION GIT_REPO
       GIT_REQUIRED_TAG CHECK_TARGET)

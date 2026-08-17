@@ -1,8 +1,3 @@
-cmake_minimum_required(VERSION 4.3 FATAL_ERROR)
-cmake_policy(VERSION 4.3)
-
-set(CMAKE_LANG "en_US.UTF-8")
-
 # Print some variables
 include(CMakePrintHelpers)
 cmake_print_variables(CMAKE_TOOLCHAIN_FILE)

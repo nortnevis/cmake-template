@@ -1,3 +1,7 @@
+cmake_minimum_required(VERSION 4.3 FATAL_ERROR)
+cmake_policy(VERSION 4.3)
+set(CMAKE_LANG "en_US.UTF-8")
+
 include(cmake/SetupEnvironment.cmake)
 
 project(
@@ -8,16 +12,13 @@ project(
 
 include(cmake/CompileFlags.cmake)
 find_or_fetch_dependency(
-  simdjson 4.6.7 https://github.com/simdjson/simdjson.git 4.6.7
+  simdjson 4.6.7 https://github.com/simdjson/simdjson.git v4.6.7
   simdjson::simdjson)
 
-add_library(pch INTERFACE ${pch_files})
+add_library(pch STATIC ${CMAKE_SOURCE_DIR}/pch/pch.cpp)
 target_precompile_headers(
-  project_options INTERFACE
-  "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/include/pch/pch.hpp>")
-
-target_precompile_headers(pch PUBLIC pch/pch.hpp)
-target_link_libraries(pch PUBLIC raylib glfw OpenCL::OpenCL)
+  pch PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_SOURCE_DIR}/pch/pch.hpp>")
+target_link_libraries(pch PUBLIC simdjson project::options)
 
 file(GLOB_RECURSE hpp_files CONFIGURE_DEPENDS include/*.hpp)
 file(GLOB_RECURSE cpp_files CONFIGURE_DEPENDS src/*.cpp)
@@ -28,14 +29,4 @@ target_link_libraries(app PRIVATE pch)
 
 if(EXISTS "${PROJECT_SOURCE_DIR}/snippets/")
   add_subdirectory(snippets)
-endif()
-
-if(EXISTS ${PROJECT_BINARY_DIR}/compile_commands.json)
-  message(
-    "Copying ${PROJECT_BINARY_DIR}/compile_commands.json to root directory")
-  file(COPY ${PROJECT_BINARY_DIR}/compile_commands.json
-       DESTINATION ${PROJECT_SOURCE_DIR})
-else()
-  # message(WARNING "File ${PROJECT_BINARY_DIR}/compile_commands.json not found.
-  # Maybe this file didn't created yet, so reconfigure CMake project.")
 endif()

@@ -1,5 +1,5 @@
 add_library(project_options INTERFACE)
-add_library(Project::options ALIAS project_options)
+add_library(project::options ALIAS project_options)
 
 target_compile_options(
   project_options

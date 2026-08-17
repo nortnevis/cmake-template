@@ -54,7 +54,7 @@ execute_process(
 if(NOT OP_RESULT EQUAL 0)
   message(FATAL_ERROR "'git describe --tags' returned ${OP_RESULT}")
 endif()
-string(REGEX MATCH"^([0-9]+)\\.([0-9]+)\\.([0-9]+)" GIT_DESCRIBED_TAG ${TAG})
+string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)" GIT_DESCRIBED_TAG ${TAG})
 if(NOT GIT_DESCRIBED_TAG)
   string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)-([0-9]+)"
                GIT_DESCRIBED_TAG ${TAG})

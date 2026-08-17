@@ -1,4 +1,4 @@
-include(cmake/SetupEnvironments.cmake)
+include(cmake/SetupEnvironment.cmake)
 
 project(
   TemplateProject

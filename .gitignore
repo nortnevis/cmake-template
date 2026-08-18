@@ -16,6 +16,7 @@
 !CMakePresets.json
 !.clang-format
 !.clangd
+!.editorconfig
 
 # Folders
 !/pch

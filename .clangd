@@ -1,6 +1,6 @@
 ---
 CompileFlags:
-  Add: [ -std=c++26, -x, c++ ]
+  Add: [ -std=c++23, -x, c++ ]
   CompilationDatabase: ./build/multi-config/
 Diagnostics:
   MissingIncludes: None
@@ -16,7 +16,7 @@ If:
   PathMatch: .*\.(cl|h|c)$
 CompileFlags:
   Add: [ -x, c ]
-  Remove: [ -std=c++26 ]
+  Remove: [ -std=c++23 ]
 ---
 If:
   PathMatch: pch/pch\.hpp

@@ -23,3 +23,7 @@ target_compile_options(
 target_compile_options(
   project_options
   INTERFACE $<$<AND:$<CONFIG:Debug>,$<NOT:$<CXX_COMPILER_ID:MSVC>>>: -g3 -O0 >)
+
+target_compile_options(
+  project_options INTERFACE $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:
+                            /RTCsu >)

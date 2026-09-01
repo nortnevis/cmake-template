@@ -7,6 +7,9 @@ LineEnding: LF
 IndentWidth: 4
 TabWidth: 4
 
+#IndentAccessModifiers: false
+AccessModifierOffset: -4
+
 # Includes
 SortIncludes: CaseInsensitive
 IncludeBlocks: Regroup

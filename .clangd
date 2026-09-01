@@ -1,9 +1,6 @@
----
 CompileFlags:
-  Add: [ -std=c++23, -x, c++ ]
-  CompilationDatabase: ./build/multi-config/
+  CompilationDatabase: build/
 Diagnostics:
-  MissingIncludes: None
   UnusedIncludes: Strict
 Completion:
   HeaderInsertion: Never
@@ -13,13 +10,6 @@ InlayHints:
   TypeNameLimit: 24
 ---
 If:
-  PathMatch: .*\.(cl|h|c)$
-CompileFlags:
-  Add: [ -x, c ]
-  Remove: [ -std=c++23 ]
----
-If:
   PathMatch: pch/pch\.hpp
 Diagnostics:
   UnusedIncludes: None
-...

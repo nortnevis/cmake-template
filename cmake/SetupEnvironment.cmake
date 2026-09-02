@@ -36,6 +36,35 @@ macro(find_or_fetch_dependency PACKAGE_NAME MIN_VERSION GIT_REPO
   endif()
 endmacro()
 
+macro(find_or_fetch_dependency_exact PACKAGE_NAME MIN_VERSION GIT_REPO
+      GIT_REQUIRED_TAG CHECK_TARGET)
+  find_package(${PACKAGE_NAME} ${MIN_VERSION} EXACT QUIET)
+
+  if(NOT ${PACKAGE_NAME}_FOUND)
+    message(
+      STATUS
+        "${PACKAGE_NAME} (>= ${MIN_VERSION}) not found locally. Fetching via FetchContent..."
+    )
+
+    FetchContent_Declare(
+      ${PACKAGE_NAME}
+      GIT_REPOSITORY ${GIT_REPO}
+      GIT_TAG ${GIT_REQUIRED_TAG})
+
+    FetchContent_MakeAvailable(${PACKAGE_NAME})
+
+    if(NOT TARGET ${CHECK_TARGET})
+      message(
+        FATAL_ERROR
+          "FATAL: Dependency '${PACKAGE_NAME}' could not be found system-wide AND FetchContent failed to provide target '${CHECK_TARGET}'!"
+      )
+    endif()
+  else()
+    message(
+      STATUS "Found ${PACKAGE_NAME} (version: ${${PACKAGE_NAME}_VERSION})")
+  endif()
+endmacro()
+
 # ccache
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)

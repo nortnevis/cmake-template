@@ -16,8 +16,7 @@ find_or_fetch_dependency(
   simdjson::simdjson)
 
 add_library(pch STATIC ${CMAKE_SOURCE_DIR}/pch/pch.cpp)
-target_precompile_headers(
-  pch PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_SOURCE_DIR}/pch/pch.hpp>")
+target_precompile_headers(pch PUBLIC pch/pch.hpp)
 target_link_libraries(pch PUBLIC simdjson::simdjson project::options)
 
 file(GLOB_RECURSE hpp_files CONFIGURE_DEPENDS include/*.hpp)

@@ -10,7 +10,10 @@ project(
   VERSION ${GIT_DESCRIBED_TAG}
   LANGUAGES CXX)
 
+# Compiler Flags
 include(cmake/CompileFlags.cmake)
+
+# Dependensies
 find_or_fetch_dependency(
   simdjson 4.6.6 https://github.com/simdjson/simdjson.git v4.6.6
   simdjson::simdjson)

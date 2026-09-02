@@ -1,3 +1,2 @@
 # First of all
-- make git tag parsing optional
-- fix pch generator expression
+- Nothing to do
